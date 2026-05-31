@@ -1,0 +1,6 @@
+telethon
+selenium
+flask
+aiosqlite
+apscheduler
+colorama
