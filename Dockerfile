@@ -1,8 +1,20 @@
 FROM python:3.11-slim
-RUN apt-get update && apt-get install -y chromium chromium-driver && rm -rf /var/lib/apt/lists/*
+
+# Sistem güncellemeleri ve Chromium kurulumu (Selenium için)
+RUN apt-get update && apt-get install -y \
+    chromium \
+    chromium-driver \
+    && rm -rf /var/lib/apt/lists/*
+
+# Çalışma dizini
 WORKDIR /app
+
+# Gereksinimleri kopyala ve yükle
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Bot kodunu kopyala
 COPY kubur_operasyon.py .
-# Hemen çalıştır ve çıktıyı göster
-CMD ["sh", "-c", "python -u kubur_operasyon.py 2>&1 | tee /tmp/bot.log; echo 'Bot kapandı, loglar aşağıda:'; cat /tmp/bot.log; sleep 300"]
+
+# Başlatma komutu
+CMD ["python", "kubur_operasyon.py"]
