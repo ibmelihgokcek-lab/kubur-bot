@@ -4,4 +4,5 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY kubur_operasyon.py .
-CMD ["python", "kubur_operasyon.py"]
+# Hemen çalıştır ve çıktıyı göster
+CMD ["sh", "-c", "echo '=== Starting bot ===' && python -u kubur_operasyon.py 2>&1"]
