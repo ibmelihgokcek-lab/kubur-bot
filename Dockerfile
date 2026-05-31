@@ -5,4 +5,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY kubur_operasyon.py .
 # Hemen çalıştır ve çıktıyı göster
-CMD ["sh", "-c", "echo '=== Starting bot ===' && python -u kubur_operasyon.py 2>&1"]
+CMD ["sh", "-c", "python -u kubur_operasyon.py 2>&1 | tee /tmp/bot.log; echo 'Bot kapandı, loglar aşağıda:'; cat /tmp/bot.log; sleep 300"]
